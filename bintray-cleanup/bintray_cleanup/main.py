@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 import json
-from typing import Dict, Optional, Callable, List
+from datetime import datetime, timedelta, timezone
+from typing import Callable, Dict, List, Optional
 
 import click
 import pygments
 import pygments.formatters
 import pygments.lexers
 import requests_cache
-from datetime import timedelta, datetime, timezone
-
 
 ISO8601_WITH_MICROSECOND_FORMAT = "%Y-%m-%dT%H:%M:%S.%f%z"
 
@@ -226,7 +225,9 @@ def delete_old_versions(
                     f"This is a dry-run, not deleting {display_version_name}", fg="cyan"
                 )
             else:
-                obj.request_json("DELETE", f"{obj.api_base_url}packages/{subject}/{repo}/{package}")
+                obj.request_json(
+                    "DELETE", f"{obj.api_base_url}packages/{subject}/{repo}/{package}"
+                )
             deleted_versions.append(version)
 
         click.echo(f"Done processing {display_version_name}\n")
