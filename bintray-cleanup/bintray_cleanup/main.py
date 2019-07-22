@@ -162,7 +162,7 @@ def list_old_versions(
 @click.argument("package")
 @click.argument("older_than_days", type=int)
 @click.option("--dryrun/--no-dryrun", default=True)
-@click.option("--limit", default=-1)
+@click.option("--limit", default=None, type=int)
 @click.option("--yes", default=False, is_flag=True)
 @click.pass_context
 def delete_old_versions(
@@ -172,7 +172,7 @@ def delete_old_versions(
     package: str,
     older_than_days: int,
     dryrun: bool,
-    limit: int,
+    limit: Optional[int],
     yes: bool,
 ) -> None:
     obj: ContextObj = ctx.obj
