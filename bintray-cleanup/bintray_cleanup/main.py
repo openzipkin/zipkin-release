@@ -225,6 +225,7 @@ def delete_old_versions(
                     f"This is a dry-run, not deleting {display_version_name}", fg="cyan"
                 )
             else:
+                click.secho(str(datetime.now()), fg="cyan")
                 obj.request_json(
                     "DELETE", f"{obj.api_base_url}packages/{subject}/{repo}/{package}"
                 )
