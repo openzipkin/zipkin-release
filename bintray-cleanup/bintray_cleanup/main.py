@@ -227,7 +227,7 @@ def delete_old_versions(
             else:
                 click.secho(str(datetime.now()), fg="cyan")
                 obj.request_json(
-                    "DELETE", f"{obj.api_base_url}packages/{subject}/{repo}/{package}"
+                    "DELETE", f"{obj.api_base_url}packages/{subject}/{repo}/{package}/versions/{version['name']}"
                 )
             deleted_versions.append(version)
 
